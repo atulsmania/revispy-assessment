@@ -26,7 +26,7 @@ export default function Login() {
       if (error) throw error;
 
       setToken(data.session?.access_token);
-      router.push('/');
+      router.replace('/');
     } catch (error) {
       console.log(error);
     }

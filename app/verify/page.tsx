@@ -21,7 +21,7 @@ const VerifyEmailComponent = () => {
       if (error) throw error;
 
       setToken(data.session?.access_token as string);
-      router.push('/');
+      router.replace('/');
     } catch (error) {
       console.log(error);
     }

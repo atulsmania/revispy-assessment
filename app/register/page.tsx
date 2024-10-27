@@ -25,7 +25,7 @@ export default function Register() {
       );
       if (error) throw error;
 
-      router.push(`/verify?email=${email}`);
+      router.replace(`/verify?email=${email}`);
     } catch (error) {
       console.log(error);
     }
