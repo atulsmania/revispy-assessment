@@ -17,10 +17,10 @@ export default function VerifyEmail() {
 
   const handleVerify = async () => {
     try {
-      const { data, error } = await verifyUserEmail(userEmail!, code);
+      const { data, error } = await verifyUserEmail(userEmail as string, code);
       if (error) throw error;
 
-      setToken(data.session?.access_token!);
+      setToken(data.session?.access_token as string);
       router.push('/');
     } catch (error) {
       console.log(error);

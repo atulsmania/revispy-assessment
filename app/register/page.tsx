@@ -13,12 +13,16 @@ export default function Register() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const name = data.get('name')!.toString();
-    const email = data.get('email')!.toString();
-    const password = data.get('password')!.toString();
+    const name = data.get('name')?.toString();
+    const email = data.get('email')?.toString();
+    const password = data.get('password')?.toString();
 
     try {
-      const { error } = await signUpNewUser(email, password, name);
+      const { error } = await signUpNewUser(
+        email as string,
+        password as string,
+        name as string
+      );
       if (error) throw error;
 
       router.push(`/verify?email=${email}`);

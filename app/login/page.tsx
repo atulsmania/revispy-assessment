@@ -15,11 +15,14 @@ export default function Login() {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    const email = data.get('email')!.toString();
-    const password = data.get('password')!.toString();
+    const email = data.get('email')?.toString();
+    const password = data.get('password')?.toString();
 
     try {
-      const { data, error } = await signInUser(email, password);
+      const { data, error } = await signInUser(
+        email as string,
+        password as string
+      );
       if (error) throw error;
 
       setToken(data.session?.access_token);
