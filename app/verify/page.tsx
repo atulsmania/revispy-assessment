@@ -4,9 +4,9 @@ import Button from '@/components/Button';
 import PinInput from '@/components/PinInput';
 import { setToken, verifyUserEmail } from '@/lib/auth';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
-export default function VerifyEmail() {
+const VerifyEmailComponent = () => {
   const router = useRouter();
   const [code, setCode] = useState('');
   const userEmail = useSearchParams().get('email');
@@ -38,5 +38,13 @@ export default function VerifyEmail() {
         Verify
       </Button>
     </div>
+  );
+};
+
+export default function VerifyEmail() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyEmailComponent />
+    </Suspense>
   );
 }
