@@ -6,11 +6,8 @@ import Input from '@/components/Input';
 import Card from '@/components/Card';
 import Link from 'next/link';
 import { setToken, signInUser } from '@/lib/auth';
-import { useRouter } from 'next/navigation';
 
 export default function Login() {
-  const router = useRouter();
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -26,7 +23,7 @@ export default function Login() {
       if (error) throw error;
 
       setToken(data.session?.access_token);
-      router.replace('/');
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

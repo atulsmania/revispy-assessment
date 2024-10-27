@@ -3,11 +3,10 @@
 import Button from '@/components/Button';
 import PinInput from '@/components/PinInput';
 import { setToken, verifyUserEmail } from '@/lib/auth';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Suspense, useState } from 'react';
 
 const VerifyEmailComponent = () => {
-  const router = useRouter();
   const [code, setCode] = useState('');
   const userEmail = useSearchParams().get('email');
 
@@ -21,7 +20,7 @@ const VerifyEmailComponent = () => {
       if (error) throw error;
 
       setToken(data.session?.access_token as string);
-      router.replace('/');
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
